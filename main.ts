@@ -1,3 +1,6 @@
+input.onButtonPressed(Button.AB, function () {
+    control.reset()
+})
 radio.onReceivedValue(function (name, value) {
     if (name == "bleft") {
         if (bpaddleA.get(LedSpriteProperty.X) > 0) {
@@ -73,18 +76,16 @@ basic.forever(function () {
         ball.change(LedSpriteProperty.Y, 1)
         directionY = 1
         directionX = randint(-1, 1)
-    } else {
-        if (ball.get(LedSpriteProperty.Y) <= 0) {
-            ball.set(LedSpriteProperty.Blink, 1)
-            basic.showLeds(`
-                # # # # .
-                # . . . #
-                # # # # #
-                # . . . #
-                # # # # .
-                `)
-            basic.pause(2000)
-            game.gameOver()
-        }
+    } else if (ball.get(LedSpriteProperty.Y) <= 0) {
+        ball.set(LedSpriteProperty.Blink, 1)
+        basic.showLeds(`
+            # # # # .
+            # . . . #
+            # # # # #
+            # . . . #
+            # # # # .
+            `)
+        basic.pause(2000)
+        game.gameOver()
     }
 })
